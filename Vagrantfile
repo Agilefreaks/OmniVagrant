@@ -7,8 +7,12 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'hashicorp/precise64'
 
+  config.ssh.private_key_path = [ '~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa' ]
   config.ssh.forward_agent = true
   
+  config.vm.network :forwarded_port, host: 9292, guest: 9292
+  config.vm.network :forwarded_port, host: 3000, guest: 3000
+
   config.vm.define 'dev' do |dev|
     dev.vm.hostname = 'dev'
   end

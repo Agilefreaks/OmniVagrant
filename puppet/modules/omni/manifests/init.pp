@@ -6,5 +6,7 @@ class omni::dev (
     gemsets => [$gemsetapi, $gemsetweb]
   }->
   class { 'omni::mongo': }->
-  class { 'omni::api': }
+  class { 'github': }->
+  class { 'omni::api': }->
+  class { 'omni::web': }
 }
