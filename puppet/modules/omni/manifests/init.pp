@@ -3,6 +3,8 @@ class omni::dev (
     $gemsetweb = 'webomni'
   ) {
   class { 'omni::ruby':
-    gemset => $gemsetapi
-  }
+    gemsets => [$gemsetapi, $gemsetweb]
+  }->
+  class { 'omni::mongo': }->
+  class { 'omni::api': }
 }
