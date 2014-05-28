@@ -9,7 +9,7 @@ class omni::api (
     require => [ Package[ 'git' ] ],
     source => 'git@github.com:Agilefreaks/OmniApi.git',
     revision => 'master',
-    identity => '/home/$user/.ssh/id_rsa'
+    identity => "/home/$user/.ssh/id_rsa"
   }->
   exec { 'api: install gems':
     command => "cd omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle install'",

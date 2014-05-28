@@ -9,7 +9,7 @@ class omni::sync (
     require => [ Package[ 'git' ] ],
     source => 'git@github.com:Agilefreaks/OmniSync.git',
     revision => 'master',
-    identity => '/home/$user/.ssh/id_rsa'
+    identity => "/home/$user/.ssh/id_rsa"
   }->
   exec { 'sync: install gems':
     command => "cd omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle install'",
