@@ -17,6 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # web
   config.vm.network :forwarded_port, host: 3000, guest: 3000
 
+  config.vm.synced_folder 'omni/', '/home/vagrant/omni'
+
   config.vm.define 'dev' do |dev|
     dev.vm.hostname = 'dev'
   end

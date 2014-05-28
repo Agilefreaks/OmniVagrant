@@ -3,7 +3,7 @@ class omni::api (
     $ruby_version = 'ruby-2.1.2',
     $gemset = 'omniapi'
   ) {
-  vcsrepo { "/home/$user/omniapi":
+  vcsrepo { "/home/$user/omni/omniapi":
     ensure => latest,
     provider => git,
     require => [ Package[ 'git' ] ],
@@ -12,13 +12,13 @@ class omni::api (
     identity => "/home/$user/.ssh/id_rsa"
   }->
   exec { 'api: install gems':
-    command => "cd omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle install'",
+    command => "cd omni/omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle install'",
     provider => shell,
     user => $user,
     environment => ["HOME=/home/$user"]
   }->
   exec { 'api: run':
-    command => "cd omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle exec rackup' &",
+    command => "cd omni/omniapi && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle exec rackup' &",
     provider => shell,
     user => $user,
     environment => ["HOME=/home/$user"]
