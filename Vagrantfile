@@ -5,12 +5,16 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = 'hashicorp/precise64'
+  config.vm.box = 'hashicorp/precise32'
 
   config.ssh.private_key_path = [ '~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa' ]
   config.ssh.forward_agent = true
   
+  # api
   config.vm.network :forwarded_port, host: 9292, guest: 9292
+  # sync
+  config.vm.network :forwarded_port, host: 9293, guest: 9293
+  # web
   config.vm.network :forwarded_port, host: 3000, guest: 3000
 
   config.vm.define 'dev' do |dev|
