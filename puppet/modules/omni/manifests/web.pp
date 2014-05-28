@@ -18,7 +18,7 @@ class omni::web (
     environment => ["HOME=/home/$user"]
   }->
   exec { 'web: run':
-    command => "cd omni/webomni && /bin/bash --login -c 'rvm use $ruby_version@$gemset do rails s' &",
+    command => "cd omni/webomni && /bin/bash --login -c 'rvm use $ruby_version@$gemset do bundle exec rails s' &",
     provider => shell,
     user => $user,
     environment => ["HOME=/home/$user"]
